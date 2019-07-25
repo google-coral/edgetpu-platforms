@@ -15,16 +15,7 @@ officially suppported ones.
 
 # Installation instructions
 
-Go to the [release page of this repo](https://github.com/google-coral/edgetpu-platforms/releases)  
-Download edgetpu_api_&lt;platform&gt;_&lt;version&gt;.tar.gz with platform
-matching the desired device platform and copy the file to your device. 
-Untar it and run the install.sh script inside.
+Go to the [release page of this repo](https://github.com/google-coral/edgetpu-platforms/releases) and download the 
+edgetpu_api_&lt;platform&gt;_&lt;version&gt;.tar.gz that matches your platform, from the latest release. 
+Copy the file to your device, untar it and run the install.sh script inside.
 
-For example for Raspberry Pi Zero download edgetpu_api_rpi0_1.9.2.tar.gz
-```
-tar xzf edgetpu_api_rpi0_1.9.2.tar.gz
-cd edgetpu_api 
-bash ./install.sh
-```
-
-Follow the rest of the instructions on [the Coral Website](https://coral.withgoogle.com/tutorials/accelerator/) just like on any other platform.
