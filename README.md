@@ -27,7 +27,7 @@ After you boot be sure to do the following two steps:
 
   * The Pi image is DHCP and SSH enabled by default. Log in with user "pi" and
     password "raspberry". IMPORTANT: Once you're in you should
-    immediately hange your password away from the default one, otherwise
+    immediately change your password away from the default one, otherwise
     you have a security risk.
     ```
     passwd
