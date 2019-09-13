@@ -41,6 +41,56 @@ After you boot be sure to do the following two steps:
     under Advanced Options, save and reboot.
 
 
+## MacOS using Vagrant
+
+The Coral USB Accelerator is not supported under MacOS, but you can use it from
+a Linux VM under VirtualBox, if you forward the USB port through. This repo
+contains a Vagrantfile that does the port forwarding for you.
+
+```bash
+# virtualbox will prompt you to enable it in security settings.
+# Re-run the install if this causes it to error out the first time.
+brew cask install virtualbox
+brew cask install vagrant
+brew cask install virtualbox-extension-pack
+vagrant plugin install vagrant-vbguest
+```
+
+Once you have installed the requirements, you can start the machine.
+This will take a while.
+```bash
+vagrant up
+# Reboot it with the correct version of guest additions installed.
+vagrant reload
+```
+
+Once everything is built, you can get a shell by typing:
+```bash
+vagrant ssh
+```
+
+Now that you're in, you should check that the coral device is visible:
+```
+$ lsusb
+Bus 002 Device 003: ID 1a6e:089a Global Unichip Corp.
+Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+```
+
+Follow the rest of the instructions on [the Coral Website](https://coral.withgoogle.com/tutorials/accelerator/) just like on any other platform.
+
+If you get the error `RuntimeError: Error in device opening (/sys/bus/usb/devices/2-1)!`
+then use `vagrant reload` to restart the VM and it should start working again.
+
+Once you have run an example, the device's id will change:
+```
+$ lsusb
+Bus 002 Device 002: ID 18d1:9302 Google Inc.
+Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+```
+
+
 ## Unsupported platforms install wheels
 
 We recommend using the above images but if you want to install edgetpu
