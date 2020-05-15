@@ -1,20 +1,20 @@
-# EdgeTPU Platforms
+# Edge TPU unofficial platforms
 
 This repository holds auxiliary platform-related material related to
-[Google Coral Edge TPU](https://coral.withgoogle.com).
+[Google Coral Edge TPU](https://coral.ai).
 Here you can find precompiled images,
-shared libraries and patches for using the USB Edge TPU accelerator on
+shared libraries and patches for using the USB Accelerator on
 additional platforms to the main supported ones.
 
-DISCLAIMER: Please note that this is not an officially supported Google product.
+DISCLAIMER: Please note that this repository is not officially supported by Google.
 These additional precompiled images and libraries are provided *as is* at best
-effort. We will do our best to keep these unofficial builds in sync with the
-officially supported ones.
+effort. We will try to keep these unofficial builds in sync with the
+officially supported ones, but they will likely be out of date.
 
 ## Prebuilt images for Raspberry Pis
 
-For convenience we have uploaded prebuilt images for Raspberry Pi Zero,
-Pi 3 and Pi 4. Simply write the image to an sd card and boot up your Pi.
+For convenience, we have uploaded prebuilt Raspbian images for Raspberry Pi Zero,
+Pi 3 and Pi 4. Simply write the image to an SD card, boot up your Pi, and connect the USB Accelerator.
 The images contain several examples that should work out of the box.
 
 The download links are:
@@ -43,64 +43,22 @@ After you boot be sure to do the following two steps:
 
 ## MacOS using Vagrant
 
-The Coral USB Accelerator is not supported under MacOS, but you can use it from
-a Linux VM under VirtualBox, if you forward the USB port through. This repo
-contains a Vagrantfile that does the port forwarding for you.
+The `Vagrantfile` in this repo was originally created to support macOS from a Linux VM under VirtualBox.
+This is no longer necessary because the Coral USB Accelerator now officially supports macOS (and Windows 10), [since January 2020](https://coral.ai/news/updates-01-2020).
 
-```bash
-# virtualbox will prompt you to enable it in security settings.
-# Re-run the install if this causes it to error out the first time.
-brew cask install virtualbox
-brew cask install vagrant
-brew cask install virtualbox-extension-pack
-vagrant plugin install vagrant-vbguest
-```
-
-Once you have installed the requirements, you can start the machine.
-This will take a while.
-```bash
-vagrant up
-# Reboot it with the correct version of guest additions installed.
-vagrant reload
-```
-
-Once everything is built, you can get a shell by typing:
-```bash
-vagrant ssh
-```
-
-Now that you're in, you should check that the coral device is visible:
-```
-$ lsusb
-Bus 002 Device 003: ID 1a6e:089a Global Unichip Corp.
-Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
-Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-```
-
-Follow the rest of the instructions on [the Coral Website](https://coral.withgoogle.com/tutorials/accelerator/) just like on any other platform.
-
-If you get the error `RuntimeError: Error in device opening (/sys/bus/usb/devices/2-1)!`
-then use `vagrant reload` to restart the VM and it should start working again.
-
-Once you have run an example, the device's id will change:
-```
-$ lsusb
-Bus 002 Device 002: ID 18d1:9302 Google Inc.
-Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
-Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-```
+To use the USB Accelerator on macOS, simply follow the [USB Accelerator get started guide](https://coral.ai/docs/accelerator/get-started).
 
 
 ## Unsupported platforms install wheels
 
 We recommend using the above images but if you want to install edgetpu
 libraries from scratch onto a Pi Zero image you can also download a modified
-installation script for Raspberry Pi Zero and Zero W
+installation script for Raspberry Pi Zero and Zero W.
 
-Go to the [release page of this repo](https://github.com/google-coral/edgetpu-platforms/releases)
-Download edgetpu_api_&lt;platform&gt;_&lt;version&gt;.tar.gz with platform
+1. Go to the [release page of this repo](https://github.com/google-coral/edgetpu-platforms/releases).
+2. Download edgetpu_api_&lt;platform&gt;_&lt;version&gt;.tar.gz with platform
 matching the desired device platform and copy the file to your device.
-Untar it and run the install.sh script inside.
+3. Untar it and run the install.sh script inside.
 
 For example for Raspberry Pi Zero download edgetpu_api_rpi0_1.9.2.tar.gz
 ```
@@ -109,4 +67,4 @@ cd edgetpu_api
 bash ./install.sh
 ```
 
-Follow the rest of the instructions on [the Coral Website](https://coral.withgoogle.com/tutorials/accelerator/) just like on any other platform.
+Follow the rest of the instructions on [the Coral website](https://coral.ai/docs/accelerator/get-started) just like on any other platform.
